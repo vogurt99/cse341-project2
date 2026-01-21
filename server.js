@@ -20,6 +20,6 @@ app.use('/', require('./routes/index'));
 
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log(`Database connected and server running on port ${port}`);
+        console.log(`Server running on port ${port}`);
     });
 });
