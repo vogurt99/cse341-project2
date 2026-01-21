@@ -16,6 +16,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the Inventory Management API! View documentation at <a href="/api-docs">/api-docs</a>');
+});
+
 app.use('/', require('./routes/index'));
 
 connectDB().then(() => {
