@@ -5,7 +5,7 @@ const doc = {
         title: 'Inventory Management API',
         description: 'API for managing products and categories',
     },
-    host: 'https://cse341-project-2-ys2b.onrender.com',
+    host: 'cse341-project-2-ys2b.onrender.com',
     schemes: ['https'],
 };
 
