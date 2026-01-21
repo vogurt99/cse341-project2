@@ -11,6 +11,16 @@
     "https"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api-docs": {
       "get": {
         "description": "",
@@ -23,6 +33,9 @@
     },
     "/products/": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -34,36 +47,17 @@
         }
       },
       "post": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Add a new product",
             "schema": {
-              "type": "object",
-              "properties": {
-                "productName": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "stockQuantity": {
-                  "example": "any"
-                },
-                "category": {
-                  "example": "any"
-                },
-                "manufacturer": {
-                  "example": "any"
-                },
-                "restockDate": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Product"
             }
           }
         ],
@@ -79,6 +73,9 @@
     },
     "/products/{id}": {
       "put": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -86,6 +83,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update product information",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
           }
         ],
         "responses": {
@@ -101,6 +106,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -125,6 +133,9 @@
     },
     "/categories/": {
       "get": {
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -136,21 +147,17 @@
         }
       },
       "post": {
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Add a new category",
             "schema": {
-              "type": "object",
-              "properties": {
-                "categoryName": {
-                  "example": "any"
-                },
-                "department": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Category"
             }
           }
         ],
@@ -166,6 +173,9 @@
     },
     "/categories/{id}": {
       "put": {
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "parameters": [
           {
@@ -173,6 +183,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update category information",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
           }
         ],
         "responses": {
@@ -188,6 +206,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "parameters": [
           {
@@ -207,6 +228,54 @@
           "500": {
             "description": "Internal Server Error"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "productName": {
+          "type": "string",
+          "example": "any"
+        },
+        "description": {
+          "type": "string",
+          "example": "any"
+        },
+        "price": {
+          "type": "number",
+          "example": 0
+        },
+        "stockQuantity": {
+          "type": "number",
+          "example": 0
+        },
+        "category": {
+          "type": "string",
+          "example": "any"
+        },
+        "manufacturer": {
+          "type": "string",
+          "example": "any"
+        },
+        "restockDate": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string",
+          "example": "any"
+        },
+        "department": {
+          "type": "string",
+          "example": "any"
         }
       }
     }
