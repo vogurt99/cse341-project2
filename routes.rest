@@ -1,0 +1,67 @@
+### ============================================================
+### CATEGORIES COLLECTION
+### ============================================================
+
+### GET all categories
+GET http://localhost:8080/categories
+
+### POST (Create) a new category
+POST http://localhost:8080/categories HTTP/1.1
+Content-Type: application/json
+
+{
+    "categoryName": "Home Office",
+    "department": "Furniture"
+}
+
+### PUT (Update) a category
+### Replace {id} with the correct ID from the GET request
+PUT http://localhost:8080/categories/{id} HTTP/1.1
+Content-Type: application/json
+
+{
+    "categoryName": "Remote Work Gear",
+    "department": "Furniture"
+}
+
+### DELETE a category
+DELETE http://localhost:8080/categories/{id} HTTP/1.1
+
+
+### ============================================================
+### PRODUCTS COLLECTION
+### ============================================================
+
+### GET all products
+GET http://localhost:8080/products
+
+### POST (Create) a new product
+POST http://localhost:8080/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "productName": "@@@Ergonomic Chair",
+    "description": "Adjustable height and lumbar support for back pain",
+    "price": 100.00,
+    "stockQuantity": 15,
+    "category": "Home Office",
+    "manufacturer": "GawainTek",
+    "restockDate": "2024-06-14"
+}
+
+### PUT (Update) a product
+PUT http://localhost:8080/products/{id} HTTP/1.1
+Content-Type: application/json
+
+{
+    "productName": "Ergonomic Chair",
+    "description": "Adjustable height and lumbar support for back pain",
+    "price": 100.00,
+    "stockQuantity": 15,
+    "category": "Home Office",
+    "manufacturer": "GawainTek",
+    "restockDate": "2026-01-02"
+}
+
+### DELETE a product
+DELETE http://localhost:8080/products/{id} HTTP/1.1
