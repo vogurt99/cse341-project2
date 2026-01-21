@@ -1,6 +1,7 @@
 const Category = require('../models/categories');
 
 const getAll = async (req, res) => {
+    // #swagger.tags = ['Categories']
     try {
         const categories = await Category.find();
         res.status(200).json(categories);
@@ -10,6 +11,13 @@ const getAll = async (req, res) => {
 };
 
 const createCategory = async (req, res) => {
+    /* #swagger.tags = ['Categories']
+       #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Add a new category',
+            schema: { $ref: '#/definitions/Category' }
+       } 
+    */
     try {
         const category = new Category({
             categoryName: req.body.categoryName,
@@ -23,10 +31,17 @@ const createCategory = async (req, res) => {
 };
 
 const updateCategory = async (req, res) => {
+    /* #swagger.tags = ['Categories']
+       #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Update category information',
+            schema: { $ref: '#/definitions/Category' }
+       } 
+    */
     try {
         const id = req.params.id;
         const updatedCategory = await Category.findByIdAndUpdate(id, req.body, { new: true });
-        
+
         if (!updatedCategory) {
             return res.status(404).json({ message: 'Category not found' });
         }
@@ -37,10 +52,11 @@ const updateCategory = async (req, res) => {
 };
 
 const deleteCategory = async (req, res) => {
+    // #swagger.tags = ['Categories']
     try {
         const id = req.params.id;
         const deletedCategory = await Category.findByIdAndDelete(id);
-        
+
         if (!deletedCategory) {
             return res.status(404).json({ message: 'Category not found' });
         }

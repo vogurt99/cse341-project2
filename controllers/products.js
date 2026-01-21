@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 
 const getAll = async (req, res) => {
+    // #swagger.tags = ['Products']
     try {
         const products = await Product.find();
         res.status(200).json(products);
@@ -10,6 +11,13 @@ const getAll = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
+    /* #swagger.tags = ['Products']
+       #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Add a new product',
+            schema: { $ref: '#/definitions/Product' }
+       } 
+    */
     const product = new Product({
         productName: req.body.productName,
         description: req.body.description,
@@ -29,6 +37,13 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
+    /* #swagger.tags = ['Products']
+       #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Update product information',
+            schema: { $ref: '#/definitions/Product' }
+       } 
+    */
     try {
         const id = req.params.id;
         const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
@@ -43,6 +58,7 @@ const updateProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
+    // #swagger.tags = ['Products']
     try {
         const id = req.params.id;
         const deletedProduct = await Product.findByIdAndDelete(id);
