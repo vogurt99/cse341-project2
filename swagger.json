@@ -5,7 +5,7 @@
     "description": "API for managing products and categories",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-project-2-ys2b.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
