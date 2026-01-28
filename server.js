@@ -8,12 +8,18 @@ const User = require('./models/user');
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.enable('trust proxy');
+
 app
     .use(bodyParser.json())
     .use(session({
         secret: "secret",
         resave: false,
         saveUninitialized: true,
+        cookie: {
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+        }
     }))
     .use(passport.initialize())
     .use(passport.session())
