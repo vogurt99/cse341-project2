@@ -10,8 +10,7 @@ const port = process.env.PORT || 8080;
 
 app.enable('trust proxy');
 
-app
-    .use(bodyParser.json())
+app.use(bodyParser.json())
     .use(session({
         secret: "secret",
         resave: false,
@@ -31,8 +30,7 @@ app
         );
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
         next();
-    })
-    .use('/', require('./routes/index'));
+    });
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -60,6 +58,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
+
+app.use('/', require('./routes/index'));
 
 app.get('/', (req, res) => {
     res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.displayName || req.session.user.username}` : 'Logged Out');
